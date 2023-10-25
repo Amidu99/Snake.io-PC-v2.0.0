@@ -62,14 +62,14 @@ public class GamePanel extends JPanel implements ActionListener {
 		easyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setDifficulty(100);
+				setDifficulty(120);
 			}
 		});
 
 		mediumButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setDifficulty(70);
+				setDifficulty(80);
 			}
 		});
 
@@ -80,6 +80,10 @@ public class GamePanel extends JPanel implements ActionListener {
 			}
 		});
 		running = true;
+	}
+
+	public void changeDifficulty(int delay) {
+		timer.setDelay(delay);
 	}
 
 	public void setDifficulty(int delay) {
@@ -133,6 +137,13 @@ public class GamePanel extends JPanel implements ActionListener {
 		if (x[0] == foodX && y[0] == foodY) {
 			length++;
 			foodEaten++;
+			if(foodEaten==10 || foodEaten==20 || foodEaten==30 || foodEaten==40 || foodEaten==50){
+				int newDelay;
+				int currentDelay = timer.getDelay();
+				if(currentDelay>85){newDelay = currentDelay-20; changeDifficulty(newDelay);}
+				if(currentDelay>45 && currentDelay<85){newDelay = currentDelay-10; changeDifficulty(newDelay); }
+				if(currentDelay>20 && currentDelay<45){newDelay = currentDelay-5; changeDifficulty(newDelay); }
+			}
 			addFood();
 		}
 	}
