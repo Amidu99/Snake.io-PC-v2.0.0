@@ -279,6 +279,17 @@ public class GamePanel extends JPanel implements ActionListener {
 					}
 					break;
 
+				case KeyEvent.VK_P:
+					if (timer.isRunning()) {
+						timer.stop();
+					}
+					break;
+
+				case KeyEvent.VK_R:
+					if (!timer.isRunning()) {
+						timer.start();
+					}
+					break;
 			}
 		}
 	}
